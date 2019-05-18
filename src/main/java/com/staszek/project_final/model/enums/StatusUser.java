@@ -1,5 +1,5 @@
 package com.staszek.project_final.model.enums;
 
-public enum StatusAcount {
+public enum StatusUser {
     Actywny, Nieaktywny, Zablokowany
 }

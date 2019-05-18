@@ -1,11 +1,10 @@
 package com.staszek.project_final.model;
 
-import com.staszek.project_final.model.enums.LogoTyp;
-import com.staszek.project_final.model.enums.StatusAcount;
+import com.staszek.project_final.model.enums.StatusUser;
+import com.staszek.project_final.model.enums.TypeUser;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Users {
@@ -16,9 +15,29 @@ public class Users {
     private String login;  // login jako email
     private String password;
     private String nameOfAcount; //opisowa nazwa konta (wykorzystywana do wyświetlania)
-    private String dateAcount; //data założenia konta
-    private StatusAcount statusAcount; //status konta (AKTYWNE/NIEAKTYWNE/ZABLOKOWANE)
-    private LogoTyp logoTyp; //typ (PUBLICZNE/PRYWATNE)
+    private String dateOfCreationAcount; //data założenia konta
+
+    @Enumerated(EnumType.STRING)
+    private StatusUser statusUser; //status konta (AKTYWNE/NIEAKTYWNE/ZABLOKOWANE)
+    @Enumerated(EnumType.STRING)
+    private TypeUser typeUser; //typ (PUBLICZNE/PRYWATNE)
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
+    private Set<Entry> entries;
+
+    public Users(String login, String password, String nameOfAcount, String dateOfCreationAcount,
+                 StatusUser statusUser, TypeUser typeUser) {
+        this.login = login;
+        this.password = password;
+        this.nameOfAcount = nameOfAcount;
+        this.dateOfCreationAcount = dateOfCreationAcount;
+        this.statusUser = statusUser;
+        this.typeUser = typeUser;
+       // this.entries = entries;
+    }
+
+    public Users() {
+    }
 
     public Long getId() {
         return id;
@@ -52,29 +71,26 @@ public class Users {
         this.nameOfAcount = nameOfAcount;
     }
 
-    public String getDateAcount() {
-        return dateAcount;
+
+
+    public StatusUser getStatusUser() {
+        return statusUser;
     }
 
-    public void setDateAcount(String dateAcount) {
-        this.dateAcount = dateAcount;
+    public void setStatusUser(StatusUser statusUser) {
+        this.statusUser = statusUser;
     }
 
-    public StatusAcount getStatusAcount() {
-        return statusAcount;
+    public TypeUser getTypeUser() {
+        return typeUser;
     }
 
-    public void setStatusAcount(StatusAcount statusAcount) {
-        this.statusAcount = statusAcount;
+    public void setTypeUser(TypeUser typeUser) {
+        this.typeUser = typeUser;
     }
 
-    public LogoTyp getLogoTyp() {
-        return logoTyp;
-    }
 
-    public void setLogoTyp(LogoTyp logoTyp) {
-        this.logoTyp = logoTyp;
-    }
+
 
     @Override
     public String toString() {
@@ -83,9 +99,26 @@ public class Users {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", nameOfAcount='" + nameOfAcount + '\'' +
-                ", dateAcount='" + dateAcount + '\'' +
-                ", statusAcount=" + statusAcount +
-                ", logoTyp=" + logoTyp +
+                ", dateOfCreationAcount='" + dateOfCreationAcount + '\'' +
+                ", statusUser=" + statusUser +
+                ", typeUser=" + typeUser +
+                ", entries=" + entries +
                 '}';
+    }
+
+    public Set<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(Set<Entry> entries) {
+        this.entries = entries;
+    }
+
+    public String getDateOfCreationAcount() {
+        return dateOfCreationAcount;
+    }
+
+    public void setDateOfCreationAcount(String dateOfCreationAcount) {
+        this.dateOfCreationAcount = dateOfCreationAcount;
     }
 }
