@@ -14,6 +14,7 @@ public class Users {
     private Long id; //jednoznaczna nazwa konta (wykorzystywana do linkowania do konta)
     private String login;  // login jako email
     private String password;
+    private String uniqueNameOfAccont;  //unikatowa nazwa konta
     private String nameOfAcount; //opisowa nazwa konta (wykorzystywana do wyświetlania)
     private String dateOfCreationAcount; //data założenia konta
 
@@ -25,10 +26,11 @@ public class Users {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
     private Set<Entry> entries;
 
-    public Users(String login, String password, String nameOfAcount, String dateOfCreationAcount,
+    public Users(String login, String password,String uniqueNameOfAccont, String nameOfAcount, String dateOfCreationAcount,
                  StatusUser statusUser, TypeUser typeUser) {
         this.login = login;
         this.password = password;
+        this.uniqueNameOfAccont=uniqueNameOfAccont;
         this.nameOfAcount = nameOfAcount;
         this.dateOfCreationAcount = dateOfCreationAcount;
         this.statusUser = statusUser;
@@ -37,6 +39,10 @@ public class Users {
     }
 
     public Users() {
+    }
+
+    public Users(String nameOfAcount) {
+        this.nameOfAcount = nameOfAcount;
     }
 
     public Long getId() {
@@ -90,22 +96,6 @@ public class Users {
     }
 
 
-
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", nameOfAcount='" + nameOfAcount + '\'' +
-                ", dateOfCreationAcount='" + dateOfCreationAcount + '\'' +
-                ", statusUser=" + statusUser +
-                ", typeUser=" + typeUser +
-                ", entries=" + entries +
-                '}';
-    }
-
     public Set<Entry> getEntries() {
         return entries;
     }
@@ -120,5 +110,28 @@ public class Users {
 
     public void setDateOfCreationAcount(String dateOfCreationAcount) {
         this.dateOfCreationAcount = dateOfCreationAcount;
+    }
+
+    public String getUniqueNameOfAccont() {
+        return uniqueNameOfAccont;
+    }
+
+    public void setUniqueNameOfAccont(String uniqueNameOfAccont) {
+        this.uniqueNameOfAccont = uniqueNameOfAccont;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", uniqueNameOfAccont='" + uniqueNameOfAccont + '\'' +
+                ", nameOfAcount='" + nameOfAcount + '\'' +
+                ", dateOfCreationAcount='" + dateOfCreationAcount + '\'' +
+                ", statusUser=" + statusUser +
+                ", typeUser=" + typeUser +
+                ", entries=" + entries +
+                '}';
     }
 }
