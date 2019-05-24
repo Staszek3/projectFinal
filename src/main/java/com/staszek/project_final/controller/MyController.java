@@ -101,7 +101,6 @@ public class MyController {
     }
 
 
-
   @GetMapping("/usunWpis/{id}")
   public String deleteWpis(@PathVariable("id") Long id, Model model) {
      //

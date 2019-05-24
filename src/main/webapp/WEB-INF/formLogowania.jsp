@@ -22,7 +22,10 @@
     <input type="text" name="uniqueNameOfAccont"> Unikatowa nazwa konta  <br><br>
     <input type="text" name="nameOfAcount"> Opisowa nazwa konta użytkownika<br><br>
     <input type="submit" value="Rejestruj">
+        <a href="/wall"><h2>DodajWpis</h2></a>
 </form>
+
+
 
 </body>
 

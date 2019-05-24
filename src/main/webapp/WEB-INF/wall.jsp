@@ -52,7 +52,7 @@
                 <td style="width:100px">${i.getTape()}</td>
                 <td>${i.getUsers().getNameOfAcount()}</td>
                 <td>${i.getContentOfEntry()}</td>
-                <td>${i.getContentOfEntry()}</td>
+
 
                 <%--<td>form action="#" th:action="@{/usunWpis(id=${usunWpis.id})}" th:method="delete" >--%>
                     <%--<input type="hidden" name="_method" value="delete" />--%>
@@ -77,8 +77,6 @@
 </ol>
 
 <a href="/dodajWpis"><h2>DodajWpis</h2></a>
-
-
 
 </body>
 
